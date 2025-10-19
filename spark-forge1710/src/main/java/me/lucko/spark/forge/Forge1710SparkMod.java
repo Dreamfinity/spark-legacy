@@ -51,7 +51,7 @@ public class Forge1710SparkMod {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent e) {
-        File configFolder = new File(e.getModConfigurationDirectory(), "Spark");
+        File configFolder = new File(e.getModConfigurationDirectory(), e.getModMetadata().modId);
 
         if (!configFolder.exists()) {
             configFolder.mkdirs();
