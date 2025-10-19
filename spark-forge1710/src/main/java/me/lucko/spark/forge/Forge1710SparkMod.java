@@ -31,6 +31,7 @@ import cpw.mods.fml.relauncher.Side;
 import me.lucko.spark.forge.plugin.Forge1710ClientSparkPlugin;
 import me.lucko.spark.forge.plugin.Forge1710ServerSparkPlugin;
 
+import java.io.File;
 import java.nio.file.Path;
 
 @Mod(
@@ -50,7 +51,13 @@ public class Forge1710SparkMod {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent e) {
-        this.configDirectory = e.getModConfigurationDirectory().toPath();
+        File configFolder = new File(e.getModConfigurationDirectory(), "Spark");
+
+        if (!configFolder.exists()) {
+            configFolder.mkdirs();
+        }
+
+        this.configDirectory = configFolder.toPath();
     }
 
     @EventHandler
